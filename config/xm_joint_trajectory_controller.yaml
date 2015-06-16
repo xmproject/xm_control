@@ -1,0 +1,38 @@
+xm:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+#  mobile_base_controller:
+#    type: "omni_triangle_controller/OmniDriveController"
+#    wheel1: joint_wheel_1
+#    wheel2: joint_wheel_2
+#    wheel3: joint_wheel_3
+
+  # Trajectory Controllers ---------------------------------------
+  joint_trajectory_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+      - joint_lift
+      - joint_waist
+      - joint_big_arm
+      - joint_forearm
+      - joint_wrist_pitching
+      - joint_wrist_rotation
+
+    constraints:
+      goal_time: 0.5                   # Override default
+      stopped_velocity_tolerance: 0.02 # Override default
+
+    gains: # Required because we're controlling an effort interface
+      joint_lift: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      joint_waist: {p: 100,  d: 1, i: 1, i_clamp: 1}    
+      joint_big_arm: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      joint_forearm: {p: 100,  d: 1, i: 1, i_clamp: 1}    
+      joint_wrist_pitching: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      joint_wrist_rotation: {p: 100,  d: 1, i: 1, i_clamp: 1}
+
+    state_publish_rate:  25            # Override default
+    action_monitor_rate: 30            # Override default
+    stop_trajectory_duration: 0        # Override default

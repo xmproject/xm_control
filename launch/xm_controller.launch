@@ -1,0 +1,31 @@
+<launch>
+  <!-- arm controller -->
+  <rosparam file="$(find xm_control)/config/xm_arm_controllers.yaml" command="load" />
+
+  <!-- gripper contrller
+  <rosparam file="$(find xm_control)/config/xm_gripper_controllers.yaml" command="load" /-->
+
+  <!-- joint state controller -->
+  <rosparam file="$(find xm_control)/config/xm_joint_state_controller.yaml" command="load" />
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" 
+		pkg="controller_manager" 
+		type="spawner"
+		respawn="false"
+		output="screen" 
+		ns="/xm" 
+		args="right_arm_controller
+              joint_state_controller" />
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" 
+		pkg="robot_state_publisher" 
+		type="robot_state_publisher"
+		respawn="false" 
+		output="screen">
+    <param name="publish_frequency" type="double" value="20.0" />
+    <remap from="/joint_states" to="/xm/joint_states" />
+  </node>
+
+</launch>

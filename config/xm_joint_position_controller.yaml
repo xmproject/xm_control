@@ -1,0 +1,46 @@
+xm:
+  # Position Controllers ---------------------------------------
+  joint_lift_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_lift
+    pid: {p: 2000.0, i: 1.0, d: 150.0}
+  
+  joint_waist_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_waist
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_big_arm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_big_arm
+    pid: {p: 300.0, i: 0.01, d: 10.0}
+  
+  joint_forearm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_forearm
+    pid: {p: 200.0, i: 0.01, d: 10.0}
+
+  joint_wrist_pitching_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_wrist_pitching
+    pid: {p: 500.0, i: 0.01, d: 0.09}
+
+  joint_wrist_rotation_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_wrist_rotation
+    pid: {p: 1.0, i: 0.00, d: 0.02}
+
+#  joint_finger_right_position_controller:
+#    type: effort_controllers/JointPositionController
+#    joint: joint_finger_right
+#    pid: {p: 100, i: 0.01, d: 10.0}
+
+#  joint_finger_left_position_controller:
+#    type: effort_controllers/JointPositionController
+#    joint: joint_finger_left
+#    pid: {p: 100, i: 0.01, d: 10.0}
+
+  joint_kinect_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_kinect
+    pid: {p: 2000, i: 0.01, d: 0.5}
